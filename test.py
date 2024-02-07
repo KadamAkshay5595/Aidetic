@@ -2,6 +2,10 @@ from pyspark.sql import SparkSession
 from pyspark.sql.functions import col, concat, lit, to_timestamp, udf
 from pyspark.sql.types import DoubleType
 from math import radians, sin, cos, sqrt, atan2
+import pandas as pd
+import matplotlib.pyplot as plt
+from mpl_toolkits.basemap import Basemap
+import folium
 
 ### Creating Spark Session for our Task
 
@@ -71,6 +75,39 @@ df_filtered.show(3)
 
 ### Task 8: Save the final DataFrame to a CSV file
 df_filtered.write.csv("file:///home/test/filtered_dataset.csv", header=True)
+
+### Task 7 : Data Visualisation
+
+# Convert Spark DataFrame to Pandas DataFrame
+
+df_pd = pd.DataFrame(df_filtered.collect(), columns=df_filtered.columns)
+
+# Plot using Basemap
+plt.figure(figsize=(12, 6))
+m = Basemap(projection='mill',llcrnrlat=-90,urcrnrlat=90,llcrnrlon=-180,urcrnrlon=180,resolution='c')
+m.drawcoastlines()
+m.drawcountries()
+m.drawmapboundary(fill_color='lightblue')
+
+for index, row in df_pd.iterrows():
+    x, y = m(row['Longitude'], row['Latitude'])
+    m.plot(x, y, 'ro', markersize=row['Magnitude'], alpha=0.6)
+
+plt.title("Earthquake Distribution (Basemap)")
+plt.show()
+
+# Plot using Folium
+m = folium.Map(location=[0, 0], zoom_start=2)
+
+for index, row in df_pd.iterrows():
+    folium.CircleMarker(
+        location=[row['Latitude'], row['Longitude']],
+        radius=row['Magnitude']*2,
+        color='red',
+        fill_color='red'
+    ).add_to(m)
+
+m.save('earthquake_map.html')
 
 ### Stop the Spark session
 spark.stop()
