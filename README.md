@@ -21,7 +21,7 @@ This repository contains a PySpark script for loading earthquake data, performin
 1. Open a terminal and navigate to the directory containing the PySpark script.
 2. Run the PySpark script using the following command:
 
-'spark-submit --master local[*] earthquake_processing.py'
+spark-submit --master local[*] test.py
 
 3. The script will load the earthquake data, perform necessary transformations, and save the processed data into a CSV file.
 4. Once the script finishes execution, you will find the processed data saved in the output directory.
