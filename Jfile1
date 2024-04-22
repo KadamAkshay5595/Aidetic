@@ -1,0 +1,26 @@
+pipeline {
+    agent any
+
+    environment {
+        SPARK_HOME = '/home/akshay/spark'
+        PATH = "$PATH:${SPARK_HOME}/bin"
+    }
+    
+    stages {
+        stage('python task') {
+            steps {
+                sh 'python3 --version'
+            }
+        }
+        
+        stage('Run PySpark Job as akshay user') {
+            steps {
+                script {
+                    def password = '*#Babu5595'
+                    sh "echo ${password} | su - akshay -c 'curl -O https://raw.githubusercontent.com/KadamAkshay5595/Aidetic/main/test.py'"
+                    sh "echo ${password} | su - akshay -c 'chmod +x test.py && /home/akshay/spark/bin/spark-submit --master local[*] /home/akshay/test.py'"
+                 }
+              }
+         }
+   }
+}
