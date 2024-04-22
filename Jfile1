@@ -21,13 +21,13 @@ pipeline {
                 script {
                     git branch: 'main', credentialsId: '770dfc9f-25be-4492-a03c-7904fb810dc9', url: 'https://github.com/KadamAkshay5595/Aidetic'
                     // Define the URL of your Python script on GitHub
-                    def githubScriptUrl = 'https://raw.githubusercontent.com/KadamAkshay5595/Aidetic/main/your_script.py'
+                    def githubScriptUrl = 'https://raw.githubusercontent.com/KadamAkshay5595/Aidetic/main/pytest.py'
             
                     // Download the Python script from GitHub
-                    sh "curl -o your_script.py ${githubScriptUrl}"
+                    sh "curl -o pytest.py ${githubScriptUrl}"
             
                     // Run the Python script
-                    sh "python3 your_script.py"
+                    sh "python3 pytest.py"
                  }
               }
 
