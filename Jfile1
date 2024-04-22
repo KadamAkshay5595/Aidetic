@@ -10,13 +10,28 @@ pipeline {
     }
     
     stages {
-        stage('python task') {
+        stage('Checkout') {
             steps {
-                sh 'python3 --version'
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: '770dfc9f-25be-4492-a03c-7904fb810dc9', url: 'https://github.com/KadamAkshay5595/Aidetic.git']])
             }
         }
-        
-        stage('Run PySpark Job as akshay user') {
+
+         stage('Verifying branch and Build') {
+            steps {
+                script {
+                    git branch: 'main', credentialsId: '770dfc9f-25be-4492-a03c-7904fb810dc9', url: 'https://github.com/KadamAkshay5595/Aidetic'
+                    // Define the URL of your Python script on GitHub
+                    def githubScriptUrl = 'https://raw.githubusercontent.com/KadamAkshay5595/Aidetic/main/your_script.py'
+            
+                    // Download the Python script from GitHub
+                    sh "curl -o your_script.py ${githubScriptUrl}"
+            
+                    // Run the Python script
+                    sh "python3 your_script.py"
+                 }
+              }
+
+         stage('Run PySpark Job as akshay user') {
             steps {
                 script {
                     def password = '*#Babu5595'
