@@ -14,11 +14,7 @@ pipeline {
             }
         }
         
-        pipeline {
-    agent any
-
-    stages {
-        stage('Login to akshay user') {
+     stage('Login to akshay user') {
             steps {
                 script {
                     // Use a more secure method to handle passwords
@@ -38,3 +34,5 @@ pipeline {
         }
     }
 }
+
+        
