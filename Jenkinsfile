@@ -25,14 +25,21 @@ pipeline {
             }
         }
       
+        stage('Change permission of test.py') {
+            steps {
+                script {
+                    sh 'chmod +x test.py'
+                }
+            }
+        }
+
         stage('Run PySpark Job as akshay user') {
             steps {
                 script {
-                    sh 'ls -l'
+                    sh 'su - akshay -c "spark-submit --master local[*] test.py"'
                 }
             }
         }
     }
 }
-
         
