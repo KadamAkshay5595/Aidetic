@@ -34,13 +34,13 @@ pipeline {
         }
 
         stage('Run PySpark Job as akshay user') {
-    steps {
-        script {
-            sh 'export PATH=$PATH:/home/akshay/spark/bin && su - akshay -c "spark-submit --master local[*] test.py"'
-        }
-    }
-}
-
-    }
+            steps {
+                script {
+                    sh 'su - akshay -c "ls -l test.py"'
+                    sh 'su - akshay -c "which spark-submit"'
+                 }
+              }
+         }
+   }
 }
         
