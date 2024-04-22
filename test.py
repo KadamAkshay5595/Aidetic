@@ -14,7 +14,7 @@ spark = SparkSession.builder \
     .getOrCreate()
 
 ### Task 1: Loading the dataset into a PySpark DataFrame
-df = spark.read.csv("file:///home/test/database.csv", header=True, inferSchema=True)
+df = spark.read.csv("file:///home/akshay/Downloads/database.csv", header=True, inferSchema=True)
 
 ### Validating Data and Schema of Data:
 
@@ -74,7 +74,7 @@ df_filtered = df_filtered.withColumn("Dist_From_Ref", calculate_distance_udf(col
 df_filtered.show(3)
 
 ### Task 8: Save the final DataFrame to a CSV file
-df_filtered.write.csv("file:///home/test/filtered_dataset.csv", header=True)
+df_filtered.write.csv("file:///home/akshay/OUTPUT/filtered_dataset.csv", header=True)
 
 ### Task 7 : Data Visualisation
 
@@ -107,7 +107,7 @@ for index, row in df_pd.iterrows():
         fill_color='red'
     ).add_to(m)
 
-m.save('earthquake_map.html')
+m.save('OUTPUT/earthquake_map.html')
 
 ### Stop the Spark session
 spark.stop()
