@@ -14,10 +14,25 @@ pipeline {
             }
         }
         
-        stage('Run PySpark Job') {
+        pipeline {
+    agent any
+
+    stages {
+        stage('Login to akshay user') {
             steps {
                 script {
-                    sh 'spark-submit --master local[*] test.py'
+                    // Use a more secure method to handle passwords
+                    // For demonstration purposes only
+                    def password = '*#Babu5595'
+                    sh "echo ${password} | su - akshay -c 'echo Switched to akshay user'"
+                }
+            }
+        }
+      
+        stage('Run PySpark Job as akshay user') {
+            steps {
+                script {
+                    sh 'su - akshay -c "spark-submit --master local[*] test.py"'
                 }
             }
         }
