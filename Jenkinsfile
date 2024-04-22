@@ -37,7 +37,7 @@ pipeline {
             steps {
                 script {
                     def password = '*#Babu5595'
-                    sh "echo ${password} | su - akshay -c 'ls -l test.py'"
+                    sh "echo ${password} | su - akshay -c 'ls -l network.txt'"
                  }
               }
          }
