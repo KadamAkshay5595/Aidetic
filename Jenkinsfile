@@ -36,8 +36,8 @@ pipeline {
         stage('Run PySpark Job as akshay user') {
             steps {
                 script {
-                    sh 'echo ${password} | su - akshay -c "ls -l test.py"'
-                    sh 'echo ${password} | su - akshay -c "which spark-submit"'
+                    sh 'echo ${password} | su - akshay -c "ls -l test.py'
+                    sh 'echo ${password} | su - akshay -c "which spark-submit'
                  }
               }
          }
