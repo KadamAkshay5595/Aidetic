@@ -15,8 +15,8 @@ pipeline {
                 checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: '770dfc9f-25be-4492-a03c-7904fb810dc9', url: 'https://github.com/KadamAkshay5595/Aidetic.git']])
             }
         }
-    }
-         stage('Verifying branch and Build') {
+
+        stage('Verifying branch and Build') {
             steps {
                 script {
                     git branch: 'main', credentialsId: '770dfc9f-25be-4492-a03c-7904fb810dc9', url: 'https://github.com/KadamAkshay5595/Aidetic'
@@ -30,9 +30,9 @@ pipeline {
                     sh "python3 pytest.py"
                  }
               }
-       }
+        }
 
-         stage('Run PySpark Job as akshay user') {
+        stage('Run PySpark Job as akshay user') {
             steps {
                 script {
                     def password = '*#Babu5595'
@@ -40,5 +40,6 @@ pipeline {
                     sh "echo ${password} | su - akshay -c 'export PATH=$PATH:/home/akshay/spark/bin && spark-submit --master local[*] test.py'"
                  }
               }
-         }
+        }
    }
+}
