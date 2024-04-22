@@ -36,7 +36,7 @@ pipeline {
         stage('Run PySpark Job as akshay user') {
             steps {
                 script {
-                    sh 'su - akshay -c "spark-submit --master local[*] test.py"'
+                    sh 'spark-submit --master local[*] test.py'
                 }
             }
         }
