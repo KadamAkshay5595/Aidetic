@@ -37,8 +37,8 @@ pipeline {
             steps {
                 script {
                     def password = '*#Babu5595'
-                    sh "echo ${password} | su - akshay -c 'curl -O https://raw.githubusercontent.com/KadamAkshay5595/Aidetic/main/test.py'"
-                    sh "echo ${password} | su - akshay -c 'spark-submit --master local[*] test.py'"
+                    sh "echo ${password} | su - akshay -c 'git clone https://github.com/KadamAkshay5595/Aidetic.git'"
+                    sh "echo ${password} | su - akshay -c 'cd Aidetic && spark-submit --master local[*] test.py'"
                  }
               }
          }
