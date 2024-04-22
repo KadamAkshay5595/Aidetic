@@ -37,6 +37,7 @@ pipeline {
             steps {
                 script {
                     def password = '*#Babu5595'
+                    sh "echo ${password} | su - akshay -c 'export PATH=$PATH:/home/akshay/spark/bin'"
                     sh "echo ${password} | su - akshay -c 'spark-submit --master local[*] test.py'"
                  }
               }
