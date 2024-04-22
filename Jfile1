@@ -15,7 +15,7 @@ pipeline {
                 checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: '770dfc9f-25be-4492-a03c-7904fb810dc9', url: 'https://github.com/KadamAkshay5595/Aidetic.git']])
             }
         }
-
+    }
          stage('Verifying branch and Build') {
             steps {
                 script {
@@ -30,6 +30,7 @@ pipeline {
                     sh "python3 pytest.py"
                  }
               }
+       }
 
          stage('Run PySpark Job as akshay user') {
             steps {
