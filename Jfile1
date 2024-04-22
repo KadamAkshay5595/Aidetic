@@ -4,6 +4,9 @@ pipeline {
     environment {
         SPARK_HOME = '/home/akshay/spark'
         PATH = "$PATH:${SPARK_HOME}/bin"
+        GITHUB_FILE_URL = 'https://raw.githubusercontent.com/KadamAkshay5595/Aidetic/main/test.py'
+        ADDITIONAL_PARAMS = '--conf spark.executor.memory=4g --conf spark.driver.memory=4g'
+        EDGE_NODE_URL = 'spark://edge-node-hostname:7077' // Replace edge-node-hostname with your actual edge node hostname or IP address
     }
     
     stages {
@@ -17,8 +20,8 @@ pipeline {
             steps {
                 script {
                     def password = '*#Babu5595'
-                    sh "echo ${password} | su - akshay -c 'curl -O https://raw.githubusercontent.com/KadamAkshay5595/Aidetic/main/test.py'"
-                    sh "echo ${password} | su - akshay -c 'chmod +x test.py && /home/akshay/spark/bin/spark-submit --master local[*] /home/akshay/test.py'"
+                    sh "echo ${password} | su - akshay -c 'curl -O ${env.GITHUB_FILE_URL}'"
+                    sh "echo ${password} | su - akshay -c 'chmod +x test.py && /home/akshay/spark/bin/spark-submit --master ${env.EDGE_NODE_URL} ${env.ADDITIONAL_PARAMS} /home/akshay/test.py'"
                  }
               }
          }
