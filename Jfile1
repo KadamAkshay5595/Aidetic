@@ -37,7 +37,7 @@ pipeline {
                 script {
                     def password = '*#Babu5595'
                     sh "echo ${password} | su - akshay -c 'curl -O https://raw.githubusercontent.com/KadamAkshay5595/Aidetic/main/aidetic_app_test.py'"
-                    sh "echo ${password} | su - akshay -c 'chmod +x aidetic_app_test.py && /home/akshay/pytest aidetic_app_test.py'"
+                    sh "echo ${password} | su - akshay -c 'chmod +x /home/akshay/aidetic_app_test.py && /home/akshay/pytest aidetic_app_test.py'"
                  }
               }
         }
