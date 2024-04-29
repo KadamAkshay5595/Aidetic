@@ -48,9 +48,6 @@ def test_visualize_data(spark):
     except Exception as e:
         pytest.fail(f"visualize_data raised an exception: {e}")
 
-    # You can add more specific assertions if needed
-    assert True  # Add your assertions here
-
 def test_save_to_csv(spark):
     # Create a mock DataFrame for testing
     mock_data = [
