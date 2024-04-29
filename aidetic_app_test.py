@@ -2,7 +2,7 @@ import os
 import tempfile
 import pytest
 from pyspark.sql import SparkSession
-from test2 import load_dataset, convert_to_timestamp, filter_earthquakes_by_magnitude, categorize_earthquakes, calculate_distance, save_to_csv, visualize_data,avg_calculator
+from test2 import load_dataset, convert_to_timestamp, filter_earthquakes_by_magnitude, categorize_earthquakes, calculate_distance, save_to_csv,avg_calculator
 
 @pytest.fixture(scope="module")
 def spark():
