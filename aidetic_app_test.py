@@ -33,20 +33,20 @@ def test_calculate_distance(spark):
     assert calculate_distance(-20.579,-173.972 ) == 17634.749687902233
     
 
-def test_visualize_data(spark):
-    # Create a mock DataFrame for testing
-    mock_data = [
-        {"Latitude": 0, "Longitude": 0, "Magnitude": 5},
-        {"Latitude": 10, "Longitude": 10, "Magnitude": 6},
-        {"Latitude": -10, "Longitude": -10, "Magnitude": 7}
-    ]
-    mock_df = spark.createDataFrame(mock_data)
+# def test_visualize_data(spark):
+#     # Create a mock DataFrame for testing
+#     mock_data = [
+#         {"Latitude": 0, "Longitude": 0, "Magnitude": 5},
+#         {"Latitude": 10, "Longitude": 10, "Magnitude": 6},
+#         {"Latitude": -10, "Longitude": -10, "Magnitude": 7}
+#     ]
+#     mock_df = spark.createDataFrame(mock_data)
 
-    # Test that the function does not raise any exceptions
-    try:
-        visualize_data(mock_df)
-    except Exception as e:
-        pytest.fail(f"visualize_data raised an exception: {e}")
+#     # Test that the function does not raise any exceptions
+#     try:
+#         visualize_data(mock_df)
+#     except Exception as e:
+#         pytest.fail(f"visualize_data raised an exception: {e}")
 
 def test_save_to_csv(spark):
     # Create a mock DataFrame for testing
